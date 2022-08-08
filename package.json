@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "start": "pnpm serve --port 80"
+    "serve": "vite preview --host",
+    "start": "pnpm serve"
   },
   "license": "MIT",
   "dependencies": {
