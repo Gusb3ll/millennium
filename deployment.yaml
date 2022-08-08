@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: millennium-frontend
   namespace: millennium-frontend
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
 spec:
+  ingressClassName: nginx
   rules:
   - host:
     http:
