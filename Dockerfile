@@ -4,22 +4,20 @@ WORKDIR /cunny
 
 RUN npm i --location=global pnpm
 
-COPY ./ .
+COPY . .
 
 RUN pnpm i
 
 RUN pnpm build
 
-FROM node:16-alpine
+FROM nginx:alpine
 
-RUN npm i --location=global pnpm
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=builder /cunny/dist ./dist
-COPY --from=builder /cunny/index.html ./index.html
-COPY --from=builder /cunny/package.json ./package.json
-COPY --from=builder /cunny/node_modules ./node_modules
-COPY --from=builder /cunny/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=builder /cunny/dist /usr/share/nginx/html
 
-EXPOSE 4173
+COPY /ext/nginx.conf /etc/nginx/conf.d/default.conf
 
-CMD ["pnpm", "start"]
+EXPOSE 3000
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
