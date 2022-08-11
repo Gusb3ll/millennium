@@ -1,52 +1,70 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: millennium-frontend
-  namespace: millennium-frontend
+  name: millennium-front
+  namespace: millennium-front
+  annotations:
+    nginx.org/proxy-read-timeout: "20s"
+    nginx.org/proxy-connect-timeout: "30s"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/preserve-trailing-slash: "true"
+
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST"
+
+    nginx.ingress.kubernetes.io/limit-rps: "1"
+    nginx.ingress.kubernetes.io/limit-connections: "5"
 spec:
-  ingressClassName: nginx
+  ingressClass: nginx
+  tls:
+    - hosts:
+        - millennium.sh
+      secretName: cloudflare-tls
   rules:
-  - host:
+  - host: millennium.sh
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: millennium-frontend
+            name: millennium-front
             port:
               number: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: millennium-frontend
-  namespace: millennium-frontend
+  name: millennium-front
+  namespace: millennium-front
 spec:
   selector:
-    app:  millennium-frontend
+    app:  millennium-front
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 4173
+      targetPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: millennium-frontend-deployment
-  namespace: millennium-frontend
+  name: millennium-front
+  namespace: millennium-front
 spec:
   selector:
     matchLabels:
-      app: millennium-frontend
+      app: millennium-front
   replicas: 1
   template:
     metadata:
       labels:
-        app: millennium-frontend
+        app: millennium-front
     spec:
       containers:
-      - name: millennium-frontend
+      - name: millennium-front
         image: gusbell/millennium-frontend:1.0.0
         ports:
-        - containerPort: 4173
+        - containerPort: 3000
