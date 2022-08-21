@@ -1,12 +1,14 @@
 import { defineConfig } from "vite";
-import solidPlugin from "vite-plugin-solid";
 import UnocssPlugin from "@unocss/vite";
+import solidPlugin from "vite-plugin-solid";
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 export default defineConfig({
   plugins: [
     solidPlugin(),
-    UnocssPlugin({
-      // your config or in uno.config.ts
+    UnocssPlugin(),
+    createHtmlPlugin({
+      minify: true,
     }),
   ],
   server: {
