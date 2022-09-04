@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@unocss/preset-mini': 0.45.13
+  '@unocss/preset-mini': 0.45.15
   '@unocss/vite': 0.45.13
   solid-js: 1.5.1
   typescript: 4.8.2
@@ -13,7 +13,7 @@ dependencies:
   solid-js: 1.5.1
 
 devDependencies:
-  '@unocss/preset-mini': 0.45.13
+  '@unocss/preset-mini': 0.45.15
   '@unocss/vite': 0.45.13_vite@3.0.9
   typescript: 4.8.2
   vite: 3.0.9
@@ -423,6 +423,10 @@ packages:
     resolution: {integrity: sha512-EesxqFM6lPA6Ot5X4cyRcjJQsgpztrNFpxpu4HBIzbZvXLcoeG97bcLTASGSHPGWeL4baq0ur/47lM42dtjiMQ==}
     dev: true
 
+  /@unocss/core/0.45.15:
+    resolution: {integrity: sha512-NM/l/+6sg4+qQqnzbpaGDEswfkH7c1oyRA+L+gYIFPAfehQMEdKkXXJozBdFy78kLjfPVLL6iMnDhcojdZvOSg==}
+    dev: true
+
   /@unocss/inspector/0.45.13:
     resolution: {integrity: sha512-2BMfCrLwjYFyZ9BXRshFLfpNq9mqYwWTy3SNNWfC/Vx/jDL+fYvbJy5s1QTpB6spHTJt2WWgN9HGkFtDMa7Ebw==}
     dependencies:
@@ -430,10 +434,10 @@ packages:
       sirv: 2.0.2
     dev: true
 
-  /@unocss/preset-mini/0.45.13:
-    resolution: {integrity: sha512-aHnVtVu0twY0m/SzTzOLniFiBDHx1PaewJRfRdqeJdTu5d+FeWK9XA/kXudWBTvRSxOKz2yQJw3kReCVit8ueQ==}
+  /@unocss/preset-mini/0.45.15:
+    resolution: {integrity: sha512-z/GZmJFjnHAGA9vUMsieOfwAAMJe7awnnAA4pYKspDo3U9aa68qjZSSZ60s+qM7okCvL3xNFHuyipzLr/CVhEQ==}
     dependencies:
-      '@unocss/core': 0.45.13
+      '@unocss/core': 0.45.15
     dev: true
 
   /@unocss/scope/0.45.13:
